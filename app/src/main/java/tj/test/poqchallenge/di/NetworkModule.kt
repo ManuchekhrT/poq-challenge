@@ -1,6 +1,7 @@
 package tj.test.poqchallenge.di
 
 import android.content.Context
+import androidx.viewbinding.BuildConfig
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -21,7 +22,9 @@ class NetworkModule {
     @Provides
     fun provideHttpLoggingInterceptor(): HttpLoggingInterceptor {
         val logging = HttpLoggingInterceptor()
-        logging.level = HttpLoggingInterceptor.Level.BODY
+        logging.level =
+            if (BuildConfig.DEBUG) HttpLoggingInterceptor.Level.BODY
+            else HttpLoggingInterceptor.Level.NONE
         return logging
     }
 
