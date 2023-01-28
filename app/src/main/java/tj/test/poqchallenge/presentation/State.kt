@@ -2,28 +2,28 @@ package tj.test.poqchallenge.presentation
 
 typealias RepositoryItems = List<RepositoryItem>
 
-data class State<out T>(val status: Status, val data: T? = null, val message: String? = null) {
-    companion object {
-        fun <T> success(data: T?): State<T> {
-            return State(Status.SUCCESS, data, null)
-        }
+sealed class State<out R> {
+    data class Success<out T>(
+        val data: T?
+    ) : State<T>()
 
-        fun <T> empty(): State<T> {
-            return State(Status.SUCCESS, null, null)
-        }
+    data class Error(
+        val message: String? = null
+    ) : State<Nothing>()
 
-        fun <T> error(msg: String?): State<T> {
-            return State(Status.ERROR, null, msg)
-        }
+    object Loading : State<Nothing>()
 
-        fun <T> loading(): State<T> {
-            return State(Status.LOADING, null, null)
+    override fun toString(): String {
+        return when (this) {
+            is Success<*> -> "Success[data=$data]"
+            is Error -> "Error[message=$message]"
+            Loading  -> "Loading"
         }
     }
 }
 
-enum class Status {
-    SUCCESS,
-    ERROR,
-    LOADING
-}
+/**
+ * `true` if [Result] is of type [Success] & holds non-null [Success.data].
+ */
+val State<*>.succeeded
+    get() = this is State.Success && data != null

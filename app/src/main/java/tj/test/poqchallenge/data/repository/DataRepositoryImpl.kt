@@ -1,9 +1,8 @@
 package tj.test.poqchallenge.data.repository
 
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.flow
-import kotlinx.coroutines.flow.flowOn
+import kotlinx.coroutines.flow.*
+import tj.test.poqchallenge.data.mapper.toRepositoryItem
 import tj.test.poqchallenge.data.remote.RepositoryApi
 import tj.test.poqchallenge.presentation.RepositoryItems
 import tj.test.poqchallenge.presentation.State
@@ -18,7 +17,7 @@ class DataRepositoryImpl @Inject constructor(
             val repositories = api.fetchRepositories().map {
                 it.toRepositoryItem()
             }
-            emit(State.success(repositories))
+            emit(State.Success(repositories))
         }.flowOn(Dispatchers.IO)
     }
 }

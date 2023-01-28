@@ -40,17 +40,17 @@ class RepositoriesActivity : AppCompatActivity() {
     private fun initObservers() {
         lifecycleScope.launchWhenStarted {
             viewModel.repositoryItems.collectLatest {
-                when(it.status) {
-                    Status.LOADING -> {
+                when(it) {
+                    is State.Loading -> {
                         binding.pbLoading.show()
                         binding.rvRepositories.hide()
                     }
-                    Status.SUCCESS -> {
+                    is State.Success -> {
                         binding.pbLoading.hide()
                         binding.rvRepositories.show()
                         repositoryAdapter.submitList(it.data)
                     }
-                    Status.ERROR -> {
+                    is State.Error -> {
                         binding.pbLoading.hide()
                         binding.rvRepositories.hide()
                         binding.root.showSnackBar(it.message)

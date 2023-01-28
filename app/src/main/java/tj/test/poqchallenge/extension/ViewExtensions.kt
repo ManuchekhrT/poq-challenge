@@ -3,7 +3,6 @@ package tj.test.poqchallenge.extension
 import android.view.View
 import androidx.core.view.isVisible
 import com.google.android.material.snackbar.Snackbar
-import tj.test.poqchallenge.presentation.Status
 
 fun View.show() {
     this.isVisible = true

@@ -19,6 +19,12 @@ class RepositoryItemView @JvmOverloads constructor(
 
     private var rotationAngle = 0f
 
+    companion object {
+        private const val ANGLE_0f = 0f
+        private const val ANGLE_180f = 180f
+        private const val ANIMATION_DURATION = 500L
+    }
+
     init {
         layoutParams = ViewGroup.LayoutParams(
             ViewGroup.LayoutParams.MATCH_PARENT,
@@ -40,9 +46,13 @@ class RepositoryItemView @JvmOverloads constructor(
                     ivArrowIcon.isVisible = true
                     tvDescription.text = description
                     ivArrowIcon.setOnClickListener {
-                        rotationAngle = if(rotationAngle == 0f) 180f else 0f
-                        ivArrowIcon.animate().rotation(rotationAngle).setDuration(500).start()
-                        tvDescription.isVisible = rotationAngle == 180f
+                        rotationAngle = if(rotationAngle == ANGLE_0f) ANGLE_180f else ANGLE_0f
+                        ivArrowIcon
+                            .animate()
+                            .rotation(rotationAngle)
+                            .setDuration(ANIMATION_DURATION)
+                            .start()
+                        tvDescription.isVisible = rotationAngle == ANGLE_180f
                     }
                 } else {
                     ivArrowIcon.isVisible = false

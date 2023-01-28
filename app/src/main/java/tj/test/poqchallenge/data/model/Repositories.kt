@@ -12,16 +12,7 @@ data class RepositoriesResponse(
     val owner: RepositoryOwner?,
     @SerializedName("description")
     val description: String?
-) {
-    fun toRepositoryItem(): RepositoryItem {
-        return RepositoryItem(
-            name = this.name ?: "",
-            htmlUrl = this.htmlUrl ?: "",
-            ownerAvatarUrl = this.owner?.avatarUrl ?: "",
-            description = this.description ?: ""
-        )
-    }
-}
+)
 
 data class RepositoryOwner(
     @SerializedName("avatar_url")
