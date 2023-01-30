@@ -17,14 +17,6 @@ class RepositoryItemView @JvmOverloads constructor(
     private val binding =
         ItemRepositoryBinding.inflate(LayoutInflater.from(context), this, true)
 
-    private var rotationAngle = 0f
-
-    companion object {
-        private const val ANGLE_0f = 0f
-        private const val ANGLE_180f = 180f
-        private const val ANIMATION_DURATION = 500L
-    }
-
     init {
         layoutParams = ViewGroup.LayoutParams(
             ViewGroup.LayoutParams.MATCH_PARENT,
@@ -33,32 +25,17 @@ class RepositoryItemView @JvmOverloads constructor(
     }
 
     fun setItem(item: RepositoryItem) {
-        item.apply {
-            val name = this.name
-            val description = this.description
-            val htmlUrl = this.htmlUrl
-
-            with(binding) {
-                tvName.text = name
-                binding.tvHtmlUrl.text = htmlUrl
-
-                if (description.isNotBlank()) {
-                    ivArrowIcon.isVisible = true
-                    tvDescription.text = description
-                    ivArrowIcon.setOnClickListener {
-                        rotationAngle = if(rotationAngle == ANGLE_0f) ANGLE_180f else ANGLE_0f
-                        ivArrowIcon
-                            .animate()
-                            .rotation(rotationAngle)
-                            .setDuration(ANIMATION_DURATION)
-                            .start()
-                        tvDescription.isVisible = rotationAngle == ANGLE_180f
-                    }
-                } else {
-                    ivArrowIcon.isVisible = false
-                    tvDescription.isVisible = false
-                }
-            }
+        with(binding) {
+            tvName.text = item.name
+            tvDescription.isVisible = item.description.isNotBlank()
+            tvDescription.text = item.description
+            tvIsPrivate.isVisible = !item.isPrivate
+            tvForks.text = item.forksCount.toString()
+            tvStar.text = item.starsCount.toString()
+            tvIssue.text = item.issuesCount.toString()
+            tvLang.isVisible = item.language.isNotBlank()
+            ivCircleLang.isVisible = item.language.isNotBlank()
+            tvLang.text = item.language
         }
     }
 }

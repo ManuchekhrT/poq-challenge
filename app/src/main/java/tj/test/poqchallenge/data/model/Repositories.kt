@@ -11,7 +11,17 @@ data class RepositoriesResponse(
     @SerializedName("owner")
     val owner: RepositoryOwner?,
     @SerializedName("description")
-    val description: String?
+    val description: String?,
+    @SerializedName("private")
+    val private: Boolean?,
+    @SerializedName("forks_count")
+    val forksCount: Int?,
+    @SerializedName("stargazers_count")
+    val starGazersCount: Int?,
+    @SerializedName("open_issues_count")
+    val openIssuesCount: Int?,
+    @SerializedName("language")
+    val language: String?
 )
 
 data class RepositoryOwner(

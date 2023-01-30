@@ -5,4 +5,6 @@
     <string name="avatar">Avatar</string>
     <string name="refresh">Refresh</string>
     <string name="arrow_icon">Arrow icon</string>
+
+    <string name="title_public">Public</string>
 </resources>
