@@ -1,10 +1,10 @@
 # Poq Challenge
-Display scrollable list of repositories of “square” organisation in GitHub. The app should consist of only one screen (Repositories Screen).
+Task: Display scrollable list of repositories of “square” organisation in GitHub. The app should consist of only one screen (Repositories Screen).
 Each list item should have at least the name and description of the repo.
 
-API link: https://api.github.com/orgs/square/repos
+API link to retrieve data: https://api.github.com/orgs/square/repos
 
-Used technologies:
+### Used technologies to complete the task:
 - Kotlin
 - Unit test for DataRepository logic
 - DI framework Hilt. Here the best choice would be Hilt or Coin
