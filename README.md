@@ -8,7 +8,7 @@ API link to retrieve data: https://api.github.com/orgs/square/repos
 - Kotlin
 - UI:For refresh logic instaed of custom toolbar FAB or pull-to-refresh function can be used
 - Unit test for DataRepository logic
-- DI framework Hilt. Here the best choice would be Hilt or Coin
+- DI framework Hilt. Here the best choice would be Hilt or Koin
 - MVVM pattern, Clean Architecture
 - SingleActivity: In case of adding more feature fragments and single activity can be used for better navigation and UI displayment
 - Retrofit, Gson, Okhttp Logging - It is best options for handling REST-based web services. Gson is very popular JSON converter, here we could use Moshi Converter as another option 
